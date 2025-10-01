@@ -1,0 +1,4 @@
+node_modules
+.env
+# kalau tidak mau commit data/json hilangkan komentar:
+# data/*.json
