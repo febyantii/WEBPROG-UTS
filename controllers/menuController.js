@@ -1,4 +1,8 @@
 exports.showMenu = (req, res) => {
-  const user = req.session.user;
-  res.render('menu', { user });
+  if (!req.session.user) {
+    return res.redirect("/login"); // kalau belum login, balik ke login
+  }
+
+  const username = req.session.user.username; 
+  res.render("menu", { username });
 };
