@@ -1,8 +1,14 @@
+// controllers/menuController.js
 exports.showMenu = (req, res) => {
   if (!req.session.user) {
     return res.redirect("/login"); // kalau belum login, balik ke login
   }
 
-  const username = req.session.user.username; 
-  res.render("menu", { username });
+  // Ambil data user dari session
+  const { firstname, lastname } = req.session.user;
+
+  // Kirim hanya firstname & lastname ke EJS
+  res.render("menu", { 
+    user: { firstname, lastname } 
+  });
 };
