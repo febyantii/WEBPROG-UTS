@@ -22,5 +22,13 @@
     "lastname": "Catherine",
     "password": "clren007",
     "role": "admin"
+  },
+  {
+    "id": 4,
+    "username": "cindy06",
+    "firstname": "Cindy",
+    "lastname": "Permatasari",
+    "password": "cindys06",
+    "role": "admin"
   }
 ]
