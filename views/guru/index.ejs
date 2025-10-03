@@ -34,9 +34,14 @@
     /* Form */
     form { margin-bottom:30px; }
     label { display:block; margin-bottom:6px; font-weight:500; }
-    input { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
+    input, select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
     button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:.2s; }
     button:hover { background:#e63973; }
+    input:focus, select:focus {
+    outline:none;
+    border-color:#ec4899;
+    box-shadow:0 0 5px rgba(236,72,153,0.5);
+    }
 
     /* Tabel Responsif */
     .table-wrapper { overflow-x:auto; }
@@ -80,6 +85,7 @@
       nav ul { display:none; }
       .hamburger { display:flex; }
       .mobile-menu.active { display:flex; }
+
     }
   </style>
 </head>
@@ -132,7 +138,13 @@
       <label>Pendidikan:</label>
       <input type="text" name="pendidikan" required>
       <label>Mata Pelajaran:</label>
-      <input type="text" name="mapel" required>
+        <select name="mapel" required>
+            <option value="">--Pilih Mata Pelajaran--</option>
+            <option value="Mandarin">Mandarin</option>
+            <option value="Bimbel">Bimbel</option>
+            <option value="Inggris">Inggris</option>
+            <option value="Callistung">Callistung</option>
+        </select>
       <label>Tanggal Lahir:</label>
       <input type="date" name="tgl_lahir" required>
       <label>Sertifikat:</label>
@@ -174,8 +186,8 @@
                   <button type="submit" class="btn-edit">EDIT</button>
                 </form>
                 <form action="/guru/delete/<%= g.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Yakin mau hapus?')">
-                  <button type="submit" class="btn-delete">HAPUS</button>
-                </form>
+                    <button type="submit" class="btn-delete">HAPUS</button>
+                </form>                  
                 </td>
             </tr>              
           <% }) %>

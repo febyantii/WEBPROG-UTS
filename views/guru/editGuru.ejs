@@ -9,11 +9,16 @@
     .container { max-width:500px; margin:50px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
     h1 { text-align:center; color:#ff4d88; margin-bottom:20px; }
     label { display:block; margin-bottom:6px; font-weight:500; }
-    input { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
+    input,select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
     button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:0.2s; }
     button:hover { background:#e63973; }
     a { display:block; margin-top:15px; text-align:center; color:#ff4d88; text-decoration:none; font-weight:bold; }
     a:hover { text-decoration:underline; }
+    input:focus, select:focus {
+    outline:none;
+    border-color:#ec4899;
+    box-shadow:0 0 5px rgba(236,72,153,0.5);
+    }
   </style>
 </head>
 <body>
@@ -30,7 +35,14 @@
       <input type="text" name="pendidikan" value="<%= guru.pendidikan %>" required>
 
       <label>Mata Pelajaran</label>
-      <input type="text" name="mapel" value="<%= guru.mapel %>" required>
+        <select name="mapel" required>
+            <option value="">--Pilih Mata Pelajaran--</option>
+            <option value="Mandarin" <%= guru.mapel === 'Mandarin' ? 'selected' : '' %>>Mandarin</option>
+            <option value="Bimbel" <%= guru.mapel === 'Bimbel' ? 'selected' : '' %>>Bimbel</option>
+            <option value="Inggris" <%= guru.mapel === 'Inggris' ? 'selected' : '' %>>Inggris</option>
+            <option value="Callistung" <%= guru.mapel === 'Callistung' ? 'selected' : '' %>>Callistung</option>
+        </select>
+
 
       <label>Tanggal Lahir</label>
       <input type="date" name="tgl_lahir" value="<%= guru.tgl_lahir %>" required>

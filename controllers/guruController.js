@@ -62,11 +62,22 @@ exports.deleteGuru = async (req, res) => {
   try {
     const { id } = req.params;
     let gurus = await readJSON('guru.json');
-    gurus = gurus.filter(g => g.id != id);
+
+    // Cek apakah guru dengan id tersebut ada
+    const guruIndex = gurus.findIndex(g => String(g.id) === String(id));
+    if (guruIndex === -1) {
+      console.warn(`Guru dengan ID ${id} tidak ditemukan.`);
+      return res.redirect('/guru?status=notfound');
+    }
+
+    gurus.splice(guruIndex, 1);
     await writeJSON('guru.json', gurus);
-    res.redirect('/guru');
+
+    console.log(`Guru dengan ID ${id} berhasil dihapus.`);
+    return res.redirect('/guru?status=deleted');
   } catch (err) {
-    console.error(err);
-    res.redirect('/guru');
+    console.error('Error menghapus guru:', err);
+    return res.redirect('/guru?status=error');
   }
 };
+
