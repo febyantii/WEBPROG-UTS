@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kelola Guru</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body { background:#fdfdfd; color:#333; min-height:100vh; }
+
+    /* Navbar */
+    nav { background:#ec4899; color:white; padding:.75rem 1rem; box-shadow:0 2px 6px rgba(0,0,0,.15); }
+    .nav-container { display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:auto; }
+    .logo { font-size:1.5rem; font-weight:bold; }
+    nav ul { list-style:none; display:flex; gap:1rem; }
+    nav ul li { position:relative; }
+    nav ul li a { color:white; text-decoration:none; padding:.5rem .75rem; border-radius:5px; display:inline-block; transition:.3s; }
+    nav ul li a:hover { background: rgba(255,255,255,.2); }
+    nav ul li .dropdown { display:none; position:absolute; top:120%; left:0; background:white; min-width:160px; border-radius:6px; box-shadow:0 4px 10px rgba(0,0,0,.15); flex-direction:column; z-index:150; }
+    nav ul li .dropdown a { padding:.6rem 1rem; color:#333; display:block; transition:.3s; }
+    nav ul li .dropdown a:hover { background:#ffe4e6; }
+    nav ul li.active > .dropdown { display:flex; }
+    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
+    .hamburger div { width:28px; height:3px; background:white; border-radius:2px; }
+    .mobile-menu { display:none; flex-direction:column; gap:.5rem; background:#f472b6; padding:.75rem 1rem; }
+    .mobile-menu a { color:white; text-decoration:none; padding:.5rem .75rem; border-radius:5px; display:block; transition:.3s; }
+    .mobile-menu a:hover { background: rgba(255,255,255,.2); }
+    .mobile-dropdown { display:none; flex-direction:column; margin-left:1rem; background:#fbcfe8; border-radius:6px; padding:.25rem 0; }
+    .mobile-dropdown a { color:#9d174d; padding:.5rem 1rem; }
+
+    /* Container */
+    .container { max-width:950px; margin:30px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,.1); }
+    h1,h2 { text-align:center; margin-bottom:20px; color:#ff4d88; }
+
+    /* Form */
+    form { margin-bottom:30px; }
+    label { display:block; margin-bottom:6px; font-weight:500; }
+    input, select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
+    button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:.2s; }
+    button:hover { background:#e63973; }
+    input:focus, select:focus {
+    outline:none;
+    border-color:#ec4899;
+    box-shadow:0 0 5px rgba(236,72,153,0.5);
+    }
+
+    /* Tabel Responsif */
+    .table-wrapper { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; margin-top:15px; min-width:800px; }
+    th, td { padding:12px; border:1px solid #ddd; text-align:center; }
+    th { background:#ff4d88; color:#fff; }
+    tr:nth-child(even) { background:#ffe6ef; }
+    .aksi a { color:#ff4d88; font-weight:bold; text-decoration:none; }
+    .aksi a:hover { text-decoration:underline; }
+    .aksi button {
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        }
+
+        .btn-edit {
+        background-color: #4ade80; /* hijau */
+        color: #fff;
+        }
+
+        .btn-edit:hover {
+        background-color: #22c55e;
+        }
+
+        .btn-delete {
+        background-color: #f87171; /* merah */
+        color: #fff;
+        }
+
+        .btn-delete:hover {
+        background-color: #ef4444;
+        }
+
+    /* Responsif Navbar */
+    @media (max-width:768px) {
+      nav ul { display:none; }
+      .hamburger { display:flex; }
+      .mobile-menu.active { display:flex; }
+
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Chun Qing Learning Center</div>
+      <ul>
+        <li id="menu-desktop">
+            <a href="/menu">Menu</a>
+        </li>
+        <li id="kelola-desktop">
+          <a href="#" onclick="event.preventDefault()">Kelola ▼</a>
+          <div class="dropdown">
+            <a href="/murid">Murid</a>
+            <a href="/guru">Guru</a>
+          </div>
+        </li>
+        <li><a href="/laporan">Laporan</a></li>
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+        <a href =/menu id="menu-mobile-btn">Menu</a>
+        <a href="#" id="mobile-kelola-btn">Kelola ▼</a>
+    <div class="mobile-dropdown" id="mobile-kelola-dropdown">
+        <a href="/murid">Murid</a>
+        <a href="/guru">Guru</a>
+      </div>
+      <a href="/laporan">Laporan</a>
+      <a href="/logout">Log Out</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>Kelola Guru</h1>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p style="color:red;text-align:center;"><%= error %></p>
+    <% } %>
+
+    <!-- FORM TAMBAH -->
+    <form action="/guru/add" method="POST">
+      <label>Nama Depan:</label>
+      <input type="text" name="firstname" required>
+      <label>Nama Belakang:</label>
+      <input type="text" name="lastname" required>
+      <label>Pendidikan:</label>
+      <input type="text" name="pendidikan" required>
+      <label>Mata Pelajaran:</label>
+        <select name="mapel" required>
+            <option value="">--Pilih Mata Pelajaran--</option>
+            <option value="Mandarin">Mandarin</option>
+            <option value="Bimbel">Bimbel</option>
+            <option value="Inggris">Inggris</option>
+            <option value="Callistung">Callistung</option>
+        </select>
+      <label>Tanggal Lahir:</label>
+      <input type="date" name="tgl_lahir" required>
+      <label>Sertifikat:</label>
+      <input type="text" name="sertifikat" required>
+      <button type="submit">ADD TEACHER</button>
+    </form>
+
+    <!-- TABEL DAFTAR GURU -->
+    <h2>Daftar Guru</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nama Depan</th>
+            <th>Nama Belakang</th>
+            <th>Pendidikan</th>
+            <th>Mata Pelajaran</th>
+            <th>Tanggal Lahir</th>
+            <th>Sertifikat</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (gurus.length === 0) { %>
+            <tr><td colspan="8">Belum ada guru</td></tr>
+          <% } %>
+          <% gurus.forEach(g => { %>
+            <tr>
+              <td><%= g.id %></td>
+              <td><%= g.firstname %></td>
+              <td><%= g.lastname %></td>
+              <td><%= g.pendidikan %></td>
+              <td><%= g.mapel %></td>
+              <td><%= g.tgl_lahir %></td>
+              <td><%= g.sertifikat %></td>
+              <td class="aksi">
+                <form action="/guru/edit/<%= g.id %>" method="GET" style="display:inline;">
+                  <button type="submit" class="btn-edit">EDIT</button>
+                </form>
+                <form action="/guru/delete/<%= g.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Yakin mau hapus?')">
+                    <button type="submit" class="btn-delete">HAPUS</button>
+                </form>                  
+                </td>
+            </tr>              
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Desktop dropdown
+      const kelolaDesktop = document.getElementById("kelola-desktop");
+      kelolaDesktop.querySelector("a").addEventListener("click", e => {
+        e.preventDefault();
+        kelolaDesktop.classList.toggle("active");
+      });
+      document.addEventListener("click", e => {
+        if (!kelolaDesktop.contains(e.target)) kelolaDesktop.classList.remove("active");
+      });
+
+      // Mobile menu
+      const burger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const kelolaBtn = document.getElementById("mobile-kelola-btn");
+      const kelolaDropdown = document.getElementById("mobile-kelola-dropdown");
+
+      burger.addEventListener("click", () => mobileMenu.classList.toggle("active"));
+      kelolaBtn.addEventListener("click", e => {
+        e.preventDefault();
+        kelolaDropdown.style.display = kelolaDropdown.style.display === "flex" ? "none" : "flex";
+      });
+    });
+  </script>
+</body>
+</html>

@@ -22,7 +22,6 @@
       overflow: hidden;
     }
 
-    /* === Bagian Form === */
     .form-section {
       flex: 1;
       display: flex;
@@ -40,14 +39,14 @@
 
     .form-section p {
       text-align: center;
-      margin-bottom: 25px;
+      margin-bottom: 16px;
       color: #333;
     }
 
     .input-box {
-      width: 90%;
-      padding: 14px;
-      margin: 12px 0;
+      width: 100%;
+      padding: 14px 45px 14px 14px;
+      margin: 5px 0;
       border: none;
       border-radius: 15px;
       font-size: 14px;
@@ -58,10 +57,38 @@
       box-sizing: border-box;
     }
 
+    .name-group {
+      display: flex;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .name-group input {
+      flex: 1;
+      margin: 12px 0;
+    }
+
+    .password-group {
+      position: relative;
+      width: 100%;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+
     .btn-register {
-      width: 90%;
+      width: 50%;
       padding: 14px;
-      margin-top: 18px; /* jarak asli biar tetap ada space lebih */
+      margin: 18px auto 0px;
+      display: block;
       border: none;
       border-radius: 15px;
       background: #ff6f91;
@@ -89,7 +116,6 @@
       text-decoration: none;
     }
 
-    /* === Bagian Info / Logo === */
     .info-section {
       flex: 1;
       display: flex;
@@ -98,6 +124,7 @@
       align-items: center;
       text-align: center;
       padding: 40px;
+      background: #fff;
     }
 
     .info-section img {
@@ -117,6 +144,13 @@
       max-width: 320px;
       color: #000;
     }
+
+    .error {
+      color: red;
+      font-size: 13px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -125,14 +159,30 @@
       <h2>Create Account</h2>
       <p>Register your admin account</p>
 
-      <% if (error) { %>
-        <p style="color:red;"><%= error %></p>
-      <% } %>
-
       <form method="POST" action="/register">
+        <div class="name-group">
+          <input type="text" name="firstname" placeholder="Nama Depan" class="input-box" required>
+          <input type="text" name="lastname" placeholder="Nama Belakang" class="input-box" required>
+        </div>
+
         <input type="text" name="username" placeholder="Username" class="input-box" required>
-        <input type="password" name="password" placeholder="Password" class="input-box" required>
-        <input type="password" name="password2" placeholder="Konfirmasi Password" class="input-box" required>
+
+        <div class="password-group">
+          <input type="password" id="password" name="password" placeholder="Password" class="input-box" required>
+          <img src="/eye-closed.png" alt="Toggle" class="toggle-password" onclick="togglePassword('password', this)"> 
+        </div> 
+        
+        <div class="password-group">
+          <input type="password" id="password2" name="password2" placeholder="Konfirmasi Password" class="input-box" required>
+          <img src="/eye-closed.png" alt="Toggle" class="toggle-password" onclick="togglePassword('password2', this)">
+        </div>
+        
+
+        <% if (error) { %>
+          <p style="color:red; text-align:center;" class="error"><%= error %></p>
+        <% } %>
+  
+
         <button type="submit" class="btn-register">REGISTER</button>
       </form>
 
@@ -143,10 +193,22 @@
 
     <div class="info-section">
       <img src="/logo.png" alt="Logo">
-      <h1>Welcome to CHUNQING</h1>
-      <p>Daftarkan akun admin baru untuk mulai mengelola sistem CHUNQING.  
+      <h1>Welcome to Chun Qing Learning Center</h1>
+      <p>Daftarkan akun admin baru untuk mulai mengelola sistem Chun Qing Learning Center.  
         Mudah, cepat, dan aman!</p>
     </div>
   </div>
+  <script>
+    function togglePassword(id, icon) {
+      const input = document.getElementById(id);
+      if (input.type === "password") {
+        input.type = "text";
+        icon.src = "/eye-open.png"; // ganti ke ikon mata terbuka
+      } else {
+        input.type = "password";
+        icon.src = "/eye-closed.png"; // ganti ke ikon mata tertutup
+      }
+    }
+  </script>  
 </body>
 </html>

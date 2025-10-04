@@ -19,7 +19,14 @@ exports.login = async (req, res) => {
       return res.render('login', { error: 'Username atau password salah' });
     }
 
-    req.session.user = { id: user.id, username: user.username, role: user.role || 'admin' };
+    req.session.user = { 
+      id: user.id, 
+      username: user.username, 
+      firstname: user.firstname, 
+      lastname: user.lastname, 
+      role: user.role || 'admin' 
+    };
+    
     res.redirect('/menu');
   } catch (err) {
     console.error(err);
@@ -33,10 +40,20 @@ exports.showRegister = (req, res) => {
 
 exports.register = async (req, res) => {
   try {
-    const { username, password, password2 } = req.body;
-    if (!username || !password) {
-      return res.render('register', { error: 'Username & password wajib diisi' });
+    const { username, firstname, lastname, password, password2 } = req.body;
+    if (!username || !firstname || !lastname || !password) {
+      return res.render('register', { error: 'Semua data wajib diisi' });
     }
+    // Validasi nama depan & belakang kapital
+    if (!/^[A-Z]/.test(firstname) || !/^[A-Z]/.test(lastname)) {
+      return res.render('register', { error: 'Nama depan & nama belakang harus diawali huruf kapital' });
+    }
+
+    // Validasi password minimal 8 karakter & kombinasi huruf+angka
+    if (password.length < 8 || !/(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
+      return res.render('register', { error: 'Password harus minimal 8 karakter dan kombinasi huruf & angka' });
+    }
+
     if (password !== password2) {
       return res.render('register', { error: 'Konfirmasi password tidak cocok' });
     }
@@ -48,10 +65,10 @@ exports.register = async (req, res) => {
 
     const id = users.length ? Math.max(...users.map(u => u.id)) + 1 : 1;
 
-    users.push({ id, username, password, role: 'admin' }); // ⬅️ password langsung disimpan
+    users.push({ id, username, firstname, lastname, password, role: 'admin' }); // ⬅️ password langsung disimpan
     await writeJSON('users.json', users);
 
-    req.session.user = { id, username, role: 'admin' };
+    req.session.user = { id, username, firstname, lastname, role: 'admin' };
     res.redirect('/menu');
   } catch (err) {
     console.error(err);

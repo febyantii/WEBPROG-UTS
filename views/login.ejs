@@ -44,8 +44,9 @@
       color: #333;
     }
 
+
     .input-box {
-      width: 90%;
+      width: 100%;
       padding: 14px;
       margin: 12px 0;
       border: none;
@@ -57,11 +58,26 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       box-sizing: border-box;
     }
+    .password-group {
+      position: relative;
+      width: 100%;
+    }
+    .toggle-password {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
 
     .btn-login {
-      width: 90%;
+      width: 50%;
       padding: 14px;
-      margin-top: 18px; /* jarak tetap sama */
+      margin: 18px auto 0px; /* jarak tetap sama */
+      display: block;
       border: none;
       border-radius: 15px;
       background: #ff6f91;
@@ -76,7 +92,7 @@
     .btn-login:hover {
       background: #ff3f6c;
     }
-
+    
     .register-link {
       margin-top: 18px;
       font-size: 14px;
@@ -131,7 +147,10 @@
 
       <form method="POST" action="/login">
         <input type="text" name="username" placeholder="Username" class="input-box" required>
-        <input type="password" name="password" placeholder="Password" class="input-box" required>
+        <div class="password-group">
+          <input type="password" id="password" name="password" placeholder="Password" class="input-box" required>
+          <img src="/eye-closed.png" alt="Toggle" class="toggle-password" onclick="togglePassword('password', this)"> 
+        </div> 
         <button type="submit" class="btn-login">SIGN IN</button>
       </form>
 
@@ -146,6 +165,18 @@
       <p>Selamat datang di panel admin Chun Qing.  
         Kelola akun dan data dengan mudah melalui sistem ini.</p>
     </div>
+    <script>
+      function togglePassword(id, icon) {
+        const input = document.getElementById(id);
+        if (input.type === "password") {
+          input.type = "text";
+          icon.src = "/eye-open.png"; // ganti ke ikon mata terbuka
+        } else {
+          input.type = "password";
+          icon.src = "/eye-closed.png"; // ganti ke ikon mata tertutup
+        }
+      }
+    </script>  
   </div>
 </body>
 </html>

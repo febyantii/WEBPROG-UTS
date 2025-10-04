@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Guru</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body { background:#fdfdfd; color:#333; min-height:100vh; }
+    .container { max-width:500px; margin:50px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+    h1 { text-align:center; color:#ff4d88; margin-bottom:20px; }
+    label { display:block; margin-bottom:6px; font-weight:500; }
+    input,select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
+    button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:0.2s; }
+    button:hover { background:#e63973; }
+    a { display:block; margin-top:15px; text-align:center; color:#ff4d88; text-decoration:none; font-weight:bold; }
+    a:hover { text-decoration:underline; }
+    input:focus, select:focus {
+    outline:none;
+    border-color:#ec4899;
+    box-shadow:0 0 5px rgba(236,72,153,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Guru</h1>
+    <form action="/guru/edit/<%= guru.id %>" method="POST">
+      <label>Nama Depan</label>
+      <input type="text" name="firstname" value="<%= guru.firstname %>" required>
+
+      <label>Nama Belakang</label>
+      <input type="text" name="lastname" value="<%= guru.lastname %>" required>
+
+      <label>Pendidikan</label>
+      <input type="text" name="pendidikan" value="<%= guru.pendidikan %>" required>
+
+      <label>Mata Pelajaran</label>
+        <select name="mapel" required>
+            <option value="">--Pilih Mata Pelajaran--</option>
+            <option value="Mandarin" <%= guru.mapel === 'Mandarin' ? 'selected' : '' %>>Mandarin</option>
+            <option value="Bimbel" <%= guru.mapel === 'Bimbel' ? 'selected' : '' %>>Bimbel</option>
+            <option value="Inggris" <%= guru.mapel === 'Inggris' ? 'selected' : '' %>>Inggris</option>
+            <option value="Callistung" <%= guru.mapel === 'Callistung' ? 'selected' : '' %>>Callistung</option>
+        </select>
+
+
+      <label>Tanggal Lahir</label>
+      <input type="date" name="tgl_lahir" value="<%= guru.tgl_lahir %>" required>
+
+      <label>Sertifikat</label>
+      <input type="text" name="sertifikat" value="<%= guru.sertifikat %>" required>
+
+      <button type="submit">UPDATE</button>
+    </form>
+    <a href="/guru">Kembali ke daftar guru</a>
+  </div>
+</body>
+</html>

@@ -1,20 +1,34 @@
 [
   {
     "id": 1,
+    "firstname": "Febyanti",
+    "lastname": "Eirene",
     "username": "febyantii",
     "password": "123abc",
     "role": "admin"
   },
   {
     "id": 2,
+    "firstname": "Rey",
+    "lastname": "Y",
     "username": "reyy",
     "password": "rey123",
     "role": "admin"
   },
   {
     "id": 3,
-    "username": "gracianath",
-    "password": "graceabcd",
+    "username": "clren7",
+    "firstname": "Clerensia",
+    "lastname": "Catherine",
+    "password": "clren007",
+    "role": "admin"
+  },
+  {
+    "id": 4,
+    "username": "cindy06",
+    "firstname": "Cindy",
+    "lastname": "Permatasari",
+    "password": "cindys06",
     "role": "admin"
   }
 ]

@@ -4,6 +4,7 @@ const path = require('path');
 
 const loginRoutes = require('./routes/loginRoutes');
 const menuRoutes = require('./routes/menuRoutes');
+const guruRoutes = require('./routes/guruRoutes');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(session({
 // routes
 app.use('/', loginRoutes);
 app.use('/menu', menuRoutes);
+app.use('/guru', guruRoutes);
 
 // 404 simple
 app.use((req, res) => res.status(404).send('404 Not Found'));
