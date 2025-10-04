@@ -30,5 +30,13 @@
     "lastname": "Permatasari",
     "password": "cindys06",
     "role": "admin"
+  },
+  {
+    "id": 5,
+    "username": "gracianath",
+    "firstname": "Gracia",
+    "lastname": "Nathania",
+    "password": "graceabcd123",
+    "role": "admin"
   }
 ]
