@@ -16,5 +16,14 @@
     "mapel": "Bimbel",
     "tgl_lahir": "2006-02-06",
     "sertifikat": "CEFR C2"
+  },
+  {
+    "id": 3,
+    "firstname": "Gracia ",
+    "lastname": "Nathania",
+    "pendidikan": "S1",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2006-10-14",
+    "sertifikat": "HSK 4"
   }
 ]

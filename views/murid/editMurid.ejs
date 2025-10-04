@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Murid</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body { background:#fdfdfd; color:#333; min-height:100vh; }
+    .container { max-width:500px; margin:50px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
+    h1 { text-align:center; color:#ff4d88; margin-bottom:20px; }
+    label { display:block; margin-bottom:6px; font-weight:500; }
+    input,select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
+    button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:0.2s; }
+    button:hover { background:#e63973; }
+    a { display:block; margin-top:15px; text-align:center; color:#ff4d88; text-decoration:none; font-weight:bold; }
+    a:hover { text-decoration:underline; }
+    input:focus, select:focus {
+      outline:none;
+      border-color:#ec4899;
+      box-shadow:0 0 5px rgba(236,72,153,0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Edit Murid</h1>
+    <form action="/murid/edit/<%= murid.id %>" method="POST">
+      <label>Nama Lengkap</label>
+      <input type="text" name="fullname" value="<%= murid.fullname %>" required>
+
+      <label>Kelas</label>
+      <input type="text" name="kelas" value="<%= murid.kelas %>" required>
+
+      <label>Mata Pelajaran</label>
+      <select name="mapel" required>
+        <option value="">--Pilih Mata Pelajaran--</option>
+        <option value="Mandarin" <%= murid.mapel === 'Mandarin' ? 'selected' : '' %>>Mandarin</option>
+        <option value="Bimbel" <%= murid.mapel === 'Bimbel' ? 'selected' : '' %>>Bimbel</option>
+        <option value="Inggris" <%= murid.mapel === 'Inggris' ? 'selected' : '' %>>Inggris</option>
+        <option value="Calistung" <%= murid.mapel === 'Calistung' ? 'selected' : '' %>>Calistung</option>
+      </select>
+
+      <label>Tanggal Lahir</label>
+      <input type="date" name="tgl_lahir" value="<%= murid.tgl_lahir %>" required>
+
+      <label>Asal Sekolah</label>
+      <input type="text" name="asal_sekolah" value="<%= murid.asal_sekolah %>" required>
+
+      <button type="submit">UPDATE</button>
+    </form>
+    <a href="/murid">Kembali ke daftar murid</a>
+  </div>
+</body>
+</html>
