@@ -3,9 +3,18 @@
     "id": 1,
     "firstname": "Clerensia",
     "lastname": "Catherine",
-    "pendidikan": "Universitas Multimedia Nusantara",
+    "pendidikan": "S1",
     "mapel": "Mandarin",
     "tgl_lahir": "2007-01-07",
     "sertifikat": "HSK 5"
+  },
+  {
+    "id": 2,
+    "firstname": "Febyanti",
+    "lastname": "Eirene",
+    "pendidikan": "S1",
+    "mapel": "Bimbel",
+    "tgl_lahir": "2006-02-06",
+    "sertifikat": "CEFR C2"
   }
 ]
