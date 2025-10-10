@@ -154,6 +154,32 @@
 
     <!-- TABEL DAFTAR GURU -->
     <h2>Daftar Guru</h2>
+    <div class="header-section" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+      <div class="filter-search" style="display: flex; gap: 10px; align-items: center;">
+        <form action="/guru" method="GET" style="display: flex; gap: 10px;">
+          <input type="text"
+          name="search"
+          value="<%= typeof search !== 'undefined' ? search : '' %>"
+          placeholder="Cari Guru ..."
+          style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px;">
+
+          <!-- Filter -->
+           <select name="filter" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px;">
+              <option value="">Semua Matapelajaran</option>
+              <option value="Mandarin" <%= filter === 'Manadarin' ? 'selected' : ''%>>Mandarin</option>
+              <option value="Bimbel" <%= filter === 'Bimbel' ? 'selected' : ''%>>Bimbel</option>
+              <option value="Inggris" <%= filter === 'Inggris' ? 'selected' : ''%>>Inggris</option>
+              <option value="Callistung" <%= filter === 'Callistung' ? 'selected' : ''%>>Callistung</option>
+           </select>
+
+           <!-- Submit -->
+            <button type="submit" style="background-color: #ff4d88; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
+              Terapkan
+            </button>
+        </form>
+      </div>
+    </div>
+
     <div class="table-wrapper">
       <table>
         <thead>

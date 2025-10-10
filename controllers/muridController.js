@@ -79,3 +79,36 @@ exports.deleteMurid = async (req, res) => {
     return res.redirect('/murid?status=error');
   }
 };
+
+exports.showMurid = async (req, res) => {
+  try {
+    const {search, filter} = req.query;
+    let murids = await readJSON('murid.json');
+
+    if (search) {
+      const searchLower = search.toLowerCase();
+      murids = murids.filter(murid =>
+        murid.fullname.toLowerCase().includes(searchLower)
+      );
+    }
+
+    if (filter && filter !== 'all') {
+      murids = murids.filter(murid => murid.mapel === filter);
+    }
+
+    res.render('murid', {
+      murids,
+      search: search || '',
+      filter: filter || 'all',
+      error: null
+    });
+  } catch (err) {
+    console.error(err);
+    res.render('murdi', {
+      murids: [],
+      search: '',
+      filter: 'all',
+      error: 'gagal memua data murid'
+    })
+  }
+};
