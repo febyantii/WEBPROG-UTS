@@ -5,7 +5,7 @@ const path = require('path');
 const loginRoutes = require('./routes/loginRoutes');
 const menuRoutes = require('./routes/menuRoutes');
 const guruRoutes = require('./routes/guruRoutes');
-const muridRoutes = require('./routes/muridRoutes');
+const muridRoutes = require('./routes/muridRoutes'); 
 
 const app = express();
 
