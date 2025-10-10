@@ -1,10 +1,186 @@
 [
   {
     "id": 1,
-    "fullname": "Faustina",
-    "kelas": "Kids 1",
+    "fullname": "Dex Feivel Berry",
+    "kelas": "Kids basic",
     "mapel": "Mandarin",
-    "tgl_lahir": "2019-10-15",
+    "tgl_lahir": "2017-08-31",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 2,
+    "fullname": "Debora Kim Joyce Lim",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2016-06-28",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 3,
+    "fullname": "Jacinta",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2017-11-12",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 4,
+    "fullname": "Jennifer Dominique",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2016-03-25",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 5,
+    "fullname": "Victoria Ellena",
+    "kelas": "Kids Intermediate",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2016-02-28",
+    "asal_sekolah": "Penabur Gading Serpong"
+  },
+  {
+    "id": 6,
+    "fullname": "Alanna Rose",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2015-11-04",
+    "asal_sekolah": "Ipeka"
+  },
+  {
+    "id": 7,
+    "fullname": "Faustina (Nana)",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2019-03-16",
     "asal_sekolah": "Pahoa"
+  },
+  {
+    "id": 8,
+    "fullname": "Grace Patricia",
+    "kelas": "General advance",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2010-08-17",
+    "asal_sekolah": "Penabur Gading Serpong"
+  },
+  {
+    "id": 9,
+    "fullname": "Sherine Nicole",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2016-05-29",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 10,
+    "fullname": "Darren Aravindo Kho",
+    "kelas": "General intermediate",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2012-05-11",
+    "asal_sekolah": "Tarakanita"
+  },
+  {
+    "id": 11,
+    "fullname": "Adriell Cayden Sujaya",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2017-06-17",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 12,
+    "fullname": "Emily Y. L",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2015-08-24",
+    "asal_sekolah": "Atisa Dipamkara"
+  },
+  {
+    "id": 13,
+    "fullname": "Cherry G. L",
+    "kelas": "General advance",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2009-11-14",
+    "asal_sekolah": "Atisa Dipamkara"
+  },
+  {
+    "id": 14,
+    "fullname": "Pevina Edgina",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2020-09-07",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 15,
+    "fullname": "Diora Valeska",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2018-12-11",
+    "asal_sekolah": "Penabur Gading Serpong"
+  },
+  {
+    "id": 16,
+    "fullname": "Eleanor Bryna",
+    "kelas": "Kids basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2016-03-01",
+    "asal_sekolah": "Penabur Gading Serpong"
+  },
+  {
+    "id": 17,
+    "fullname": "Chloe Laurence Yiu",
+    "kelas": "Kids Basic",
+    "mapel": "Mandarin",
+    "tgl_lahir": "2019-12-19",
+    "asal_sekolah": "Tunas Mulia"
+  },
+  {
+    "id": 18,
+    "fullname": "Gevarial",
+    "kelas": "Calistung",
+    "mapel": "Calistung",
+    "tgl_lahir": "2019-04-13",
+    "asal_sekolah": "Tarakanita"
+  },
+  {
+    "id": 19,
+    "fullname": "Gabriella Winata",
+    "kelas": "Calistung",
+    "mapel": "Calistung",
+    "tgl_lahir": "2020-01-08",
+    "asal_sekolah": "Pahoa"
+  },
+  {
+    "id": 20,
+    "fullname": "Cecilia Ecclesia Anthony Liem",
+    "kelas": "Bimbel",
+    "mapel": "Bimbel",
+    "tgl_lahir": "2013-07-16",
+    "asal_sekolah": "Tarakanita"
+  },
+  {
+    "id": 21,
+    "fullname": "Perenna Laurene",
+    "kelas": "Inggris",
+    "mapel": "Inggris",
+    "tgl_lahir": "2017-03-04",
+    "asal_sekolah": "Tarakanita"
+  },
+  {
+    "id": 22,
+    "fullname": "Mick Harvey Rahardja",
+    "kelas": "Calistung",
+    "mapel": "Calistung",
+    "tgl_lahir": "2021-10-02",
+    "asal_sekolah": "Belum sekolah"
+  },
+  {
+    "id": 23,
+    "fullname": "Joyce",
+    "kelas": "Calistung",
+    "mapel": "Calistung",
+    "tgl_lahir": "2022-02-22",
+    "asal_sekolah": "Belum sekolah"
   }
 ]
