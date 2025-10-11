@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Report</title>
+  <link rel="stylesheet" href="/css/style.css"> <!-- kalau kamu punya CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .report-container {
+      background: #fff;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 40px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .report-container a {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+      background-color: #2563eb;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .report-container a:hover {
+      background-color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data Report</h1>
+
+  <div class="report-container">
+    <a href="/report/murid">Student Report</a>
+    <a href="/report/guru">Teacher Report</a>
+  </div>
+</body>
+</html>
