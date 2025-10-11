@@ -81,3 +81,36 @@ exports.deleteGuru = async (req, res) => {
   }
 };
 
+exports.showGuru = async (req, res) => {
+  try {
+    const {search, filter} = req.query;
+    let gurus = await readJSON('guru.json');
+
+    if (search) {
+      const searchLower = search.toLowerCase();
+      gurus = gurus.filter(guru =>
+        guru.firstname.toLowerCase().includes(searchLower) || 
+        guru.lastname.toLowerCase().includes(searchLower)
+      );
+    }
+
+    if (filter && filter !== 'all') {
+      gurus = gurus.filter(guru => guru.mapel === filter);
+    }
+
+    res.render('guru', {
+      gurus,
+      search: search || '',
+      filter: filter || 'all',
+      error: null
+    });
+  } catch (err) {
+    console.error(err);
+    res.render('guru', {
+      gurus: [],
+      search: '',
+      filter: 'all',
+      error: 'gagal memua data guru'
+    })
+  }
+};
