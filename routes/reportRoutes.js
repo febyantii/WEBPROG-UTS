@@ -13,12 +13,9 @@ router.get('/', isLoggedIn, (req, res) => {
   res.render('report/index');
 });
 
-router.get('/murid', isLoggedIn, (req, res) => {
-  res.render('report/muridReport');
-});
-
 router.get('/guru', isLoggedIn, reportController.showGuru);
 
-module.exports = router;
+router.get('/murid', isLoggedIn, reportController.showMurid);
+
 
 module.exports = router;
