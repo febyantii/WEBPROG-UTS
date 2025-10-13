@@ -89,7 +89,7 @@
             <a href="/guru">Guru</a>
           </div>
         </li>
-        <li><a href="/laporan">Laporan</a></li>
+        <li><a href="/report">Laporan</a></li>
         <li><a href="/logout">Log Out</a></li>
       </ul>
       <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
@@ -151,7 +151,6 @@
             <th>Mata Pelajaran</th>
             <th>Tanggal Lahir</th>
             <th>Asal Sekolah</th>
-            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -166,14 +165,6 @@
               <td><%= m.mapel %></td>
               <td><%= m.tgl_lahir %></td>
               <td><%= m.asal_sekolah %></td>
-              <td class="aksi">
-                <form action="/murid/edit/<%= m.id %>" method="GET" style="display:inline;">
-                  <button type="submit" class="btn-edit">EDIT</button>
-                </form>
-                <form action="/murid/delete/<%= m.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Yakin mau hapus?')">
-                  <button type="submit" class="btn-delete">HAPUS</button>
-                </form>
-              </td>
             </tr>
           <% }) %>
         </tbody>
