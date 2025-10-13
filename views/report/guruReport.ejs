@@ -162,7 +162,6 @@
             <th>Mata Pelajaran</th>
             <th>Tanggal Lahir</th>
             <th>Sertifikat</th>
-            <th>Aksi</th>
           </tr>
         </thead>
         <tbody>
@@ -178,14 +177,6 @@
               <td><%= g.mapel %></td>
               <td><%= g.tgl_lahir %></td>
               <td><%= g.sertifikat %></td>
-              <td class="aksi">
-                <form action="/guru/edit/<%= g.id %>" method="GET" style="display:inline;">
-                  <button type="submit" class="btn-edit">EDIT</button>
-                </form>
-                <form action="/guru/delete/<%= g.id %>" method="POST" style="display:inline;" onsubmit="return confirm('Yakin mau hapus?')">
-                    <button type="submit" class="btn-delete">HAPUS</button>
-                </form>                  
-                </td>
             </tr>              
           <% }) %>
         </tbody>

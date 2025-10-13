@@ -4,132 +4,223 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Report</title>
-  <link rel="stylesheet" href="/css/style.css"> <!-- kalau kamu punya CSS -->
+
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-    body { background:#fdfdfd; color:#333; min-height:100vh; }
-
-    /* Navbar */
-    nav { background:#ec4899; color:white; padding:.75rem 1rem; box-shadow:0 2px 6px rgba(0,0,0,.15); }
-    .nav-container { display:flex; justify-content:space-between; align-items:center; max-width:1100px; margin:auto; }
-    .logo { font-size:1.5rem; font-weight:bold; }
-    nav ul { list-style:none; display:flex; gap:1rem; }
-    nav ul li { position:relative; }
-    nav ul li a { color:white; text-decoration:none; padding:.5rem .75rem; border-radius:5px; display:inline-block; transition:.3s; }
-    nav ul li a:hover { background: rgba(255,255,255,.2); }
-    nav ul li .dropdown { display:none; position:absolute; top:120%; left:0; background:white; min-width:160px; border-radius:6px; box-shadow:0 4px 10px rgba(0,0,0,.15); flex-direction:column; z-index:150; }
-    nav ul li .dropdown a { padding:.6rem 1rem; color:#333; display:block; transition:.3s; }
-    nav ul li .dropdown a:hover { background:#ffe4e6; }
-    nav ul li.active > .dropdown { display:flex; }
-    .hamburger { display:none; flex-direction:column; cursor:pointer; gap:4px; }
-    .hamburger div { width:28px; height:3px; background:white; border-radius:2px; }
-    .mobile-menu { display:none; flex-direction:column; gap:.5rem; background:#f472b6; padding:.75rem 1rem; }
-    .mobile-menu a { color:white; text-decoration:none; padding:.5rem .75rem; border-radius:5px; display:block; transition:.3s; }
-    .mobile-menu a:hover { background: rgba(255,255,255,.2); }
-    .mobile-dropdown { display:none; flex-direction:column; margin-left:1rem; background:#fbcfe8; border-radius:6px; padding:.25rem 0; }
-    .mobile-dropdown a { color:#9d174d; padding:.5rem 1rem; }
-
-    /* Container */
-    .container { max-width:950px; margin:30px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,.1); }
-    h1,h2 { text-align:center; margin-bottom:20px; color:#ff4d88; }
-
-    /* Form */
-    form { margin-bottom:30px; }
-    label { display:block; margin-bottom:6px; font-weight:500; }
-    input, select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
-    button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:.2s; }
-    button:hover { background:#e63973; }
-    input:focus, select:focus {
-    outline:none;
-    border-color:#ec4899;
-    box-shadow:0 0 5px rgba(236,72,153,0.5);
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
 
-    /* Tabel Responsif */
-    .table-wrapper { overflow-x:auto; }
-    table { width:100%; border-collapse:collapse; margin-top:15px; min-width:800px; }
-    th, td { padding:12px; border:1px solid #ddd; text-align:center; }
-    th { background:#ff4d88; color:#fff; }
-    tr:nth-child(even) { background:#ffe6ef; }
-    .aksi a { color:#ff4d88; font-weight:bold; text-decoration:none; }
-    .aksi a:hover { text-decoration:underline; }
-    .aksi button {
-        padding: 6px 12px;
-        border-radius: 6px;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        }
+    body {
+      background: #ffe6ef;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .btn-edit {
-        background-color: #4ade80; /* hijau */
-        color: #fff;
-        }
+    /* ===== NAVBAR ===== */
+    nav {
+      background: #ec4899;
+      color: white;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
 
-        .btn-edit:hover {
-        background-color: #22c55e;
-        }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
 
-        .btn-delete {
-        background-color: #f87171; /* merah */
-        color: #fff;
-        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-        .btn-delete:hover {
-        background-color: #ef4444;
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
 
-    /* Responsif Navbar */
-    @media (max-width:768px) {
-      nav ul { display:none; }
-      .hamburger { display:flex; }
-      .mobile-menu.active { display:flex; }
+    nav ul li {
+      position: relative;
+    }
 
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    nav ul li .dropdown {
+      display: none;
+      position: absolute;
+      top: 120%;
+      left: 0;
+      background: white;
+      min-width: 160px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      flex-direction: column;
+      z-index: 150;
+    }
+
+    nav ul li .dropdown a {
+      padding: 0.6rem 1rem;
+      color: #333;
+      display: block;
+      transition: 0.3s;
+    }
+
+    nav ul li .dropdown a:hover {
+      background: #ffe4e6;
+    }
+
+    nav ul li.active > .dropdown {
+      display: flex;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      background: #f472b6;
+      padding: 0.75rem 1rem;
+    }
+
+    .mobile-menu a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 5px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .mobile-menu a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-dropdown {
+      display: none;
+      flex-direction: column;
+      margin-left: 1rem;
+      background: #fbcfe8;
+      border-radius: 6px;
+      padding: 0.25rem 0;
+    }
+
+    .mobile-dropdown a {
+      color: #9d174d;
+      padding: 0.5rem 1rem;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 200px 20px;
     }
 
     h1 {
-      margin-bottom: 40px;
       font-size: 2rem;
-      color: #333;
+      color: #c2185b;
+      margin-bottom: 25px;
+      text-align: center;
     }
 
     .report-container {
       background: #fff;
-      border: 2px solid #ddd;
-      border-radius: 10px;
-      padding: 40px;
-      width: 320px;
+      border-radius: 15px;
+      padding: 40px 60px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .report-container:hover {
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+      transform: translateY(-3px);
     }
 
     .report-container a {
       display: block;
       text-decoration: none;
       color: #fff;
-      background-color: #2563eb;
-      padding: 15px;
+      background-color: #ec4899;
+      padding: 14px;
       margin: 15px 0;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: bold;
-      transition: background-color 0.3s;
+      font-size: 1.1rem;
+      width: 250px;
+      transition: all 0.3s;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
     }
 
     .report-container a:hover {
-      background-color: #1e40af;
+      background-color: #d81b60;
+      box-shadow: 0 6px 18px rgba(216, 27, 96, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu.active { display: flex; }
+
+      .report-container {
+        padding: 30px;
+        width: 90%;
+      }
+
+      .report-container a {
+        width: 100%;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
-  <!-- Navbar -->
+<body>
+
+  <!-- ===== NAVBAR ===== -->
   <nav>
     <div class="nav-container">
       <div class="logo">Chun Qing Learning Center</div>
       <ul>
         <li id="menu-desktop">
-            <a href="/menu">Menu</a>
+          <a href="/menu">Menu</a>
         </li>
         <li id="kelola-desktop">
           <a href="#" onclick="event.preventDefault()">Kelola ▼</a>
@@ -138,28 +229,53 @@
             <a href="/guru">Guru</a>
           </div>
         </li>
-        <li><a href="/laporan">Laporan</a></li>
+        <li><a href="/report">Laporan</a></li>
         <li><a href="/logout">Log Out</a></li>
       </ul>
-      <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
+
+      <div class="hamburger" id="hamburger">
+        <div></div><div></div><div></div>
+      </div>
     </div>
+
     <div class="mobile-menu" id="mobile-menu">
-        <a href =/menu id="menu-mobile-btn">Menu</a>
-        <a href="#" id="mobile-kelola-btn">Kelola ▼</a>
-    <div class="mobile-dropdown" id="mobile-kelola-dropdown">
+      <a href="/menu">Menu</a>
+      <a href="#" id="mobile-kelola-btn">Kelola ▼</a>
+      <div class="mobile-dropdown" id="mobile-kelola-dropdown">
         <a href="/murid">Murid</a>
         <a href="/guru">Guru</a>
       </div>
-      <a href="/laporan">Laporan</a>
+      <a href="/report">Laporan</a>
       <a href="/logout">Log Out</a>
     </div>
   </nav>
-<body>
-  <h1>Data Report</h1>
 
-  <div class="report-container">
-    <a href="/report/murid">Student Report</a>
-    <a href="/report/guru">Teacher Report</a>
-  </div>
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <h1>Data Report</h1>
+    <div class="report-container">
+      <a href="/report/murid">Student Report</a>
+      <a href="/report/guru">Teacher Report</a>
+    </div>
+  </main>
+
+  <script>
+    // Mobile dropdown toggle
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileKelolaBtn = document.getElementById("mobile-kelola-btn");
+    const mobileKelolaDropdown = document.getElementById("mobile-kelola-dropdown");
+
+    hamburger.addEventListener("click", () => {
+      mobileMenu.classList.toggle("active");
+    });
+
+    mobileKelolaBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      mobileKelolaDropdown.style.display =
+        mobileKelolaDropdown.style.display === "flex" ? "none" : "flex";
+    });
+  </script>
+
 </body>
 </html>
