@@ -59,7 +59,7 @@ exports.showMurid = async (req, res) => {
     });
   } catch (err) {
     console.error(err);
-    res.render('report/murdiReport', {
+    res.render('report/muridReport', {
       murids: [],
       search: '',
       filter: 'all',
