@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Kelola Guru</title>
+  <title>Laporan Guru</title>
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
     body { background:#fdfdfd; color:#333; min-height:100vh; }
@@ -31,61 +31,53 @@
     .container { max-width:950px; margin:30px auto; background:#fff; padding:25px; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,.1); }
     h1,h2 { text-align:center; margin-bottom:20px; color:#ff4d88; }
 
-    /* Form */
-    form { margin-bottom:30px; }
-    label { display:block; margin-bottom:6px; font-weight:500; }
-    input, select { width:100%; padding:8px; border:1px solid #ccc; border-radius:6px; margin-bottom:15px; }
-    button { background:#ff4d88; color:#fff; border:none; padding:10px 16px; border-radius:6px; cursor:pointer; font-weight:bold; transition:.2s; }
-    button:hover { background:#e63973; }
-    input:focus, select:focus {
-    outline:none;
-    border-color:#ec4899;
-    box-shadow:0 0 5px rgba(236,72,153,0.5);
+    /* Form & Filter */
+    form { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    input, select {
+      padding:6px 10px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      transition:.2s;
     }
+    input:focus, select:focus {
+      outline:none;
+      border-color:#ec4899;
+      box-shadow:0 0 5px rgba(236,72,153,0.5);
+    }
+    button {
+      background:#ff4d88;
+      color:#fff;
+      border:none;
+      padding:6px 12px;
+      border-radius:6px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:.2s;
+    }
+    button:hover { background:#e63973; }
 
-    /* Tabel Responsif */
-    .table-wrapper { overflow-x:auto; }
-    table { width:100%; border-collapse:collapse; margin-top:15px; min-width:800px; }
+    /* Table */
+    .table-wrapper { overflow-x:auto; margin-top:15px; }
+    table { width:100%; border-collapse:collapse; min-width:800px; }
     th, td { padding:12px; border:1px solid #ddd; text-align:center; }
     th { background:#ff4d88; color:#fff; }
     tr:nth-child(even) { background:#ffe6ef; }
-    .aksi a { color:#ff4d88; font-weight:bold; text-decoration:none; }
-    .aksi a:hover { text-decoration:underline; }
-    .aksi button {
-        padding: 6px 12px;
-        border-radius: 6px;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.2s;
-        margin-right: 5px;
-        margin-bottom: 5px;
-        }
 
-        .btn-edit {
-        background-color: #4ade80; /* hijau */
-        color: #fff;
-        }
+    /* Flex row header */
+    .header-section {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:15px;
+      flex-wrap:wrap;
+      gap:10px;
+    }
 
-        .btn-edit:hover {
-        background-color: #22c55e;
-        }
-
-        .btn-delete {
-        background-color: #f87171; /* merah */
-        color: #fff;
-        }
-
-        .btn-delete:hover {
-        background-color: #ef4444;
-        }
-
-    /* Responsif Navbar */
     @media (max-width:768px) {
       nav ul { display:none; }
       .hamburger { display:flex; }
       .mobile-menu.active { display:flex; }
-
+      .header-section { flex-direction:column; align-items:flex-start; }
     }
   </style>
 </head>
@@ -95,9 +87,7 @@
     <div class="nav-container">
       <div class="logo">Chun Qing Learning Center</div>
       <ul>
-        <li id="menu-desktop">
-            <a href="/menu">Menu</a>
-        </li>
+        <li><a href="/menu">Menu</a></li>
         <li id="kelola-desktop">
           <a href="#" onclick="event.preventDefault()">Kelola ▼</a>
           <div class="dropdown">
@@ -111,45 +101,40 @@
       <div class="hamburger" id="hamburger"><div></div><div></div><div></div></div>
     </div>
     <div class="mobile-menu" id="mobile-menu">
-        <a href =/menu id="menu-mobile-btn">Menu</a>
-        <a href="#" id="mobile-kelola-btn">Kelola ▼</a>
-    <div class="mobile-dropdown" id="mobile-kelola-dropdown">
+      <a href="/menu">Menu</a>
+      <a href="#" id="mobile-kelola-btn">Kelola ▼</a>
+      <div class="mobile-dropdown" id="mobile-kelola-dropdown">
         <a href="/murid">Murid</a>
         <a href="/guru">Guru</a>
       </div>
-      <a href="/reoprt">Laporan</a>
+      <a href="/report">Laporan</a>
       <a href="/logout">Log Out</a>
     </div>
   </nav>
 
   <div class="container">
     <h1>Laporan Guru</h1>
-    <!-- TABEL DAFTAR GURU -->
-    <div class="header-section" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-      <div class="filter-search" style="display: flex; gap: 10px; align-items: center;">
-        <form action="/report/guru" method="GET" style="display: flex; gap: 10px;">
-          <input type="text"
-          name="search"
-          value="<%= typeof search !== 'undefined' ? search : '' %>"
-          placeholder="Cari Guru ..."
-          style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px;">
+    <h2>Daftar Guru</h2>
 
-          <!-- Filter -->
-           <select name="filter" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px;">
-              <option value="">Semua Matapelajaran</option>
-              <option value="Mandarin" <%= filter === 'Manadarin' ? 'selected' : ''%>>Mandarin</option>
-              <option value="Bimbel" <%= filter === 'Bimbel' ? 'selected' : ''%>>Bimbel</option>
-              <option value="Inggris" <%= filter === 'Inggris' ? 'selected' : ''%>>Inggris</option>
-              <option value="Callistung" <%= filter === 'Callistung' ? 'selected' : ''%>>Callistung</option>
-           </select>
+    <!-- FILTER + DOWNLOAD PDF -->
+    <div class="header-section">
+      <form action="/report/guru" method="GET">
+        <input type="text" name="search" value="<%= typeof search !== 'undefined' ? search : '' %>" placeholder="Cari Guru ...">
+        <select name="filter">
+          <option value="">Semua Mata Pelajaran</option>
+          <option value="Mandarin" <%= filter === 'Mandarin' ? 'selected' : ''%>>Mandarin</option>
+          <option value="Bimbel" <%= filter === 'Bimbel' ? 'selected' : ''%>>Bimbel</option>
+          <option value="Inggris" <%= filter === 'Inggris' ? 'selected' : ''%>>Inggris</option>
+          <option value="Callistung" <%= filter === 'Callistung' ? 'selected' : ''%>>Callistung</option>
+        </select>
+        <button type="submit">Terapkan</button>
+      </form>
 
-           <!-- Submit -->
-            <button type="submit" style="background-color: #ff4d88; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">
-              Terapkan
-            </button>
-        </form>
-      </div>
+      <button id="printGuruBtn">📄 Download PDF</button>
     </div>
+
+    <!-- TABEL -->
+    
 
     <div class="table-wrapper">
       <table>
@@ -166,7 +151,7 @@
         </thead>
         <tbody>
           <% if (gurus.length === 0) { %>
-            <tr><td colspan="8">Belum ada guru</td></tr>
+            <tr><td colspan="7">Belum ada guru</td></tr>
           <% } %>
           <% gurus.forEach(g => { %>
             <tr>
@@ -177,16 +162,17 @@
               <td><%= g.mapel %></td>
               <td><%= g.tgl_lahir %></td>
               <td><%= g.sertifikat %></td>
-            </tr>              
+            </tr>
           <% }) %>
         </tbody>
       </table>
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Desktop dropdown
+      // Dropdown desktop
       const kelolaDesktop = document.getElementById("kelola-desktop");
       kelolaDesktop.querySelector("a").addEventListener("click", e => {
         e.preventDefault();
@@ -196,16 +182,28 @@
         if (!kelolaDesktop.contains(e.target)) kelolaDesktop.classList.remove("active");
       });
 
-      // Mobile menu
+      // Mobile nav
       const burger = document.getElementById("hamburger");
       const mobileMenu = document.getElementById("mobile-menu");
       const kelolaBtn = document.getElementById("mobile-kelola-btn");
       const kelolaDropdown = document.getElementById("mobile-kelola-dropdown");
-
       burger.addEventListener("click", () => mobileMenu.classList.toggle("active"));
       kelolaBtn.addEventListener("click", e => {
         e.preventDefault();
         kelolaDropdown.style.display = kelolaDropdown.style.display === "flex" ? "none" : "flex";
+      });
+
+      // PDF download
+      document.getElementById("printGuruBtn").addEventListener("click", () => {
+        const element = document.querySelector(".table-wrapper");
+        const opt = {
+          margin: 0.5,
+          filename: 'Laporan_Guru.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'in', format: 'a4', orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(element).save();
       });
     });
   </script>

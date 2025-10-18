@@ -141,73 +141,95 @@
       padding: 0.5rem 1rem;
     }
 
+    /* ===== MAIN CONTENT (diubah total agar lebih besar dan elegan) ===== */
     /* ===== MAIN CONTENT ===== */
     main {
+      flex: 1;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
-      padding: 200px 20px;
+      text-align: center;
+      padding: 60px 20px;
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 3rem;
       color: #c2185b;
-      margin-bottom: 25px;
-      text-align: center;
+      background: linear-gradient(90deg, #ec4899, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 50px;
+      text-shadow: 0 2px 10px rgba(236, 72, 153, 0.3);
+      letter-spacing: 1.5px;
+      animation: fadeIn 1s ease;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== REPORT CONTAINER ===== */
     .report-container {
-      background: #fff;
-      border-radius: 15px;
-      padding: 40px 60px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 25px;
+      padding: 60px 80px;
       text-align: center;
-      transition: all 0.3s ease;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s ease;
+      max-width: 600px;
     }
 
     .report-container:hover {
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
-      transform: translateY(-3px);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(236, 72, 153, 0.25);
     }
 
     .report-container a {
       display: block;
       text-decoration: none;
-      color: #fff;
-      background-color: #ec4899;
-      padding: 14px;
-      margin: 15px 0;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      width: 250px;
-      transition: all 0.3s;
+      color: white;
+      background: linear-gradient(135deg, #ec4899, #d946ef);
+      padding: 18px 30px;
+      margin: 20px 0;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 1.25rem;
+      width: 280px;
+      transition: all 0.3s ease;
       margin-left: auto;
       margin-right: auto;
-      box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
     }
 
     .report-container a:hover {
-      background-color: #d81b60;
-      box-shadow: 0 6px 18px rgba(216, 27, 96, 0.35);
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, #db2777, #a21caf);
+      transform: scale(1.07);
+      box-shadow: 0 10px 30px rgba(236, 72, 153, 0.45);
     }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
+      main {
+        padding: 100px 20px;
+      }
       nav ul { display: none; }
-      .hamburger { display: flex; }
-      .mobile-menu.active { display: flex; }
 
       .report-container {
-        padding: 30px;
+        padding: 40px 30px;
         width: 90%;
+      }
+
+      h1 {
+        font-size: 2.3rem;
       }
 
       .report-container a {
         width: 100%;
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
     }
   </style>
@@ -252,7 +274,7 @@
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
-    <h1>Data Report</h1>
+    <h1>📊 Data Report</h1>
     <div class="report-container">
       <a href="/report/murid">Student Report</a>
       <a href="/report/guru">Teacher Report</a>
@@ -274,6 +296,22 @@
       e.preventDefault();
       mobileKelolaDropdown.style.display =
         mobileKelolaDropdown.style.display === "flex" ? "none" : "flex";
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const kelolaDesktop = document.getElementById("kelola-desktop");
+
+      kelolaDesktop.querySelector("a").addEventListener("click", (e) => {
+        e.preventDefault();
+        kelolaDesktop.classList.toggle("active");
+      });
+
+      // Tutup dropdown jika klik di luar
+      document.addEventListener("click", (e) => {
+        if (!kelolaDesktop.contains(e.target)) {
+          kelolaDesktop.classList.remove("active");
+        }
+      });
     });
   </script>
 
