@@ -25,5 +25,14 @@
     "mapel": "Mandarin",
     "tgl_lahir": "2006-10-14",
     "sertifikat": "HSK 4"
+  },
+  {
+    "id": 4,
+    "firstname": "Lily",
+    "lastname": "Ana",
+    "pendidikan": "S1",
+    "mapel": "Callistung",
+    "tgl_lahir": "2005-01-04",
+    "sertifikat": "-"
   }
 ]
