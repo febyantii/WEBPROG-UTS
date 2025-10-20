@@ -38,5 +38,13 @@
     "lastname": "Nathania",
     "password": "graceabcd123",
     "role": "admin"
+  },
+  {
+    "id": 6,
+    "username": "admin",
+    "firstname": "Aku",
+    "lastname": "Admin",
+    "password": "admin123",
+    "role": "admin"
   }
 ]
